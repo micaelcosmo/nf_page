@@ -8,4 +8,4 @@ def horarios_de_aulas(request):
         {'dia': 'Segunda', 'horario': '14:00 - 16:00', 'disciplina': 'Dança Contemporânea'},
         # Adicione mais horários aqui
     ]
-    return render(request, r'templates/horarios.html', {'horarios': horarios})
+    return render(request, 'templates\horarios.html', {'horarios': horarios})
