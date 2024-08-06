@@ -1,0 +1,12 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <h1>Bem-vindo à NF Page!</h1>
+    <a href="{% url 'horarios' %}" class="btn">Ver Horários</a>
+</body>
+</html>

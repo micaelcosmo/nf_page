@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 
-# nomedoapp/views.py
 def horarios_de_aulas(request):
     # Lógica para recuperar os dados dos horários de aulas (você pode adaptar isso conforme sua necessidade)
     horarios = [
@@ -9,3 +8,6 @@ def horarios_de_aulas(request):
         # Adicione mais horários aqui
     ]
     return render(request, 'horarios.html', {'horarios': horarios})
+
+def index(request):
+    return render(request, 'index.html')
