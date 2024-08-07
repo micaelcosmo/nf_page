@@ -1,14 +1,14 @@
-/* Estilo para a tabela */
-.mytable {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    margin: 0 auto; /* Centraliza horizontalmente */
-}
-
 .title {
     width: 100%;
     text-align: center;
+    margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Estilo para a tabela */
+.mytable {
+    width: 50%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
     margin: 0 auto; /* Centraliza horizontalmente */
 }
 
@@ -23,4 +23,5 @@
 .mytable td {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
 }
