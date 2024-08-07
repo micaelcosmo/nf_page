@@ -11,8 +11,8 @@ class Schedules(models.Model):
     name = models.CharField(max_length=250)
     weekly_day = models.IntegerField()
     level = models.IntegerField()
-    start_hour = models.DateTimeField()
-    end_hour = models.DateTimeField()
+    start_hour = models.CharField(max_length=100)
+    end_hour = models.CharField(max_length=100)
     status = models.CharField(max_length=20)
 
 class LogAccess(models.Model):

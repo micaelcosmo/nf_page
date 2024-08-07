@@ -1,0 +1,36 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'navigate.css' %}">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quadro de Horários</title>
+</head>
+<body>
+    <h1 class="title">Quadro de Horários</h1>
+    <p></p>
+    <table class="mytable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Dia da Semana</th>
+                <th>Nível</th>
+                <th>Início</th>
+                <th>Fim</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in class_schedules %}
+                <tr>
+                    <td>{{ schedule.name }}</td>
+                    <td>{{ schedule.weekly_day }}</td>
+                    <td>{{ schedule.level }}</td>
+                    <td>{{ schedule.start_hour }}</td>
+                    <td>{{ schedule.end_hour }}</td>
+                    <td>{{ schedule.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

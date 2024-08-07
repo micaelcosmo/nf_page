@@ -21,5 +21,5 @@ from navigate import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('horarios/', views.horarios_de_aulas, name='horarios'),
+    path('horarios/', views.class_schedules, name='class_schedules'),
 ]
