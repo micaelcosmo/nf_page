@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from navigate import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('horarios/', views.class_schedules, name='class_schedules'),
+    path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
 ]

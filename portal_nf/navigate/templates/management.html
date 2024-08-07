@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Dados</title>
+</head>
+<body>
+    <header>
+        <h1>Gerenciamento de Dados</h1>
+    </header>
+    <h2>Create/Update Schedule</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if schedule_to_update %}
+            <input type="hidden" name="schedule_id" value="{{ schedule_to_update.id }}">
+            <button type="submit" name="update">Update Schedule</button>
+        {% else %}
+            <button type="submit" name="create">Create Schedule</button>
+        {% endif %}
+    </form>
+    
+    <h2>Schedules List</h2>
+    <ul>
+        {% for schedule in schedules %}
+            <li>
+                {{ schedule.name }} - {{ schedule.time }}
+                <a href="?edit=true&schedule_id={{ schedule.pk }}">Edit</a>
+                <form method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="schedule_id" value="{{ schedule.pk }}">
+                    <button type="submit" name="delete">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
