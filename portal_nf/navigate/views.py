@@ -3,25 +3,18 @@ from .forms import SchedulesForm
 
 from django.shortcuts import render, get_object_or_404, redirect
 
-
 def index(request):
     return render(request, 'index.html')
 
 def class_schedules(request):
-    # Consulta todos os registros da tabela 'schedules'
     class_schedules = Schedules.objects.all()
     return render(request, 'class_schedules.html', {'class_schedules': class_schedules})
 
 def manage_class_schedules(request):
-    # Listar todos os schedules
     schedules = Schedules.objects.all()
-
-    # Inicializar variáveis para o formulário e o objeto a ser deletado
     form = SchedulesForm()
     schedule_to_update = None
-    schedule_to_delete = None
 
-    # Verificar se é uma requisição POST
     if request.method == "POST":
         if 'create' in request.POST:
             form = SchedulesForm(request.POST)

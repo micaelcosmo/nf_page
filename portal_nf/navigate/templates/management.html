@@ -1,4 +1,5 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'navigate.css' %}">
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,33 +9,55 @@
 </head>
 <body>
     <header>
-        <h1>Gerenciamento de Dados</h1>
+        <h1 class="title">Gerenciamento de Dados</h1>
     </header>
-    <h2>Create/Update Schedule</h2>
-    <form method="post">
+    <h2 class="title">Criar ou Editar Horários</h2>
+    <form class="mytable" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
         {% if schedule_to_update %}
             <input type="hidden" name="schedule_id" value="{{ schedule_to_update.id }}">
-            <button type="submit" name="update">Update Schedule</button>
+            <button type="submit" name="update">Alterar Cadastro</button>
+            <button type="submit" name="create">Cadastrar</button>
         {% else %}
-            <button type="submit" name="create">Create Schedule</button>
+            <button type="submit" name="create">Cadastrar</button>
         {% endif %}
     </form>
-    
-    <h2>Schedules List</h2>
-    <ul>
-        {% for schedule in schedules %}
-            <li>
-                {{ schedule.name }} - {{ schedule.time }}
-                <a href="?edit=true&schedule_id={{ schedule.pk }}">Edit</a>
-                <form method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <input type="hidden" name="schedule_id" value="{{ schedule.pk }}">
-                    <button type="submit" name="delete">Delete</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <h2 class="title">Todos os Horários</h2>
+    <table class="mytable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Dia da Semana</th>
+                <th>Nível</th>
+                <th>Início</th>
+                <th>Fim</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+                <tr>
+                    <td>{{ schedule.name }}</td>
+                    <td>{{ schedule.weekly_day }}</td>
+                    <td>{{ schedule.level }}</td>
+                    <td>{{ schedule.start_hour }}</td>
+                    <td>{{ schedule.end_hour }}</td>
+                    <td>{{ schedule.status }}</td>
+                    <td><a href="?edit=true&schedule_id={{ schedule.id }}">Editar</a></td>
+                    <td><form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="schedule_id" value="{{ schedule.id }}">
+                        <button type="submit" name="delete">Excluir</button>
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
