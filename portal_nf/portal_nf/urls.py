@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('horarios/', views.class_schedules, name='class_schedules'),
     path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
+    path('experimental_class/', views.experimental_class, name='experimental_class'),
 ]

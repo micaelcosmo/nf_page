@@ -1,5 +1,5 @@
-from .models import Schedules
-from .forms import SchedulesForm
+from .models import Schedules, ExperimentalClass
+from .forms import SchedulesForm, ExperimentalClassForm
 
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -42,4 +42,20 @@ def manage_class_schedules(request):
         'schedules': schedules,
         'form': form,
         'schedule_to_update': schedule_to_update
+    })
+
+def experimental_class(request):
+    _experimental_class = ExperimentalClass.objects.all()
+    form = ExperimentalClassForm()
+    if request.method == 'POST':
+        if 'create' in request.POST:
+            form = ExperimentalClassForm(request.POST)
+            if form.is_valid():
+                form.save()  # Salve os dados no banco de dados
+                return redirect('index')
+    else:
+        form = ExperimentalClassForm()
+    return render(request, 'experimental_class.html', {
+        'experimental_class': _experimental_class,
+        'form': form
     })

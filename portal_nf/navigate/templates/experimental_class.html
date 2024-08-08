@@ -1,0 +1,15 @@
+<!-- aulas_experimentais.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aulas Experimentais</title>
+</head>
+<body>
+    <h1>Aulas Experimentais</h1>
+    <form class="mytable" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderize os campos do formulário -->
+        <button type="submit" name='create'>Enviar</button>
+    </form>
+</body>
+</html>
