@@ -1,10 +1,17 @@
 from .models import Schedules, ExperimentalClass
 from .forms import SchedulesForm, ExperimentalClassForm
 
+from django.conf import settings
+from django.http import HttpResponse
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 
+import mercadopago
+
+
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'user': request.user})
 
 def class_schedules(request):
     class_schedules = Schedules.objects.all()
@@ -59,3 +66,14 @@ def experimental_class(request):
         'experimental_class': _experimental_class,
         'form': form
     })
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')  # Redirecione para a página inicial ou outro lugar
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})

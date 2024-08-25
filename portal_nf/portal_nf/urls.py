@@ -16,13 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from navigate import views
 
 
 urlpatterns = [
+    # COMMON USER
     path('', views.index, name='index'),
-    path('admin/', admin.site.urls),
     path('horarios/', views.class_schedules, name='class_schedules'),
-    path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
     path('experimental_class/', views.experimental_class, name='experimental_class'),
+
+    # SUPER USER
+    path('admin/', admin.site.urls),
+    path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
+
+    # LOGIN
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
 ]
