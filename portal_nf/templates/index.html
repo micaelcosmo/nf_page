@@ -9,25 +9,25 @@
     <title>Escola de Dança</title>
 </head>
 <body>
-    <h1>Bem-vindo à NF Page!</h1>
-    <P></p>
-    <a href="{% url 'class_schedules' %}" class="btn">Ver Horários</a>
-    <P></p>
-    <a href="{% url 'manage_class_schedules' %}" class="btn">Editar Horários</a>
-    <P></p>
-    <a href="{% url 'experimental_class' %}" class="btn">Agendar Aula Experimental</a>
-    <P></p>
-    <h1>Bem-vindo à Escola de Dança</h1>
-    <p>Confira nossos horários de aulas e marque uma aula experimental!</p>
-    <button id="experimental-class-botao">Marcar Aula Experimental</button>
     {% if user.is_authenticated %}
         <p>Olá, {{ user.username }}!</p>
+    {% endif %}
+    <h1>Bem-vindo à NF Page!</h1>
+    <p></p>
+    <a href="{% url 'class_schedules' %}" class="btn">Ver Horários</a>
+    <p></p>
+    <a href="{% url 'manage_class_schedules' %}" class="btn">Editar Horários</a>
+    <p></p>
+    {% if user.is_authenticated %}
+        <p>Confira nossos horários de aulas e marque uma aula experimental!</p>
+        <button id="experimental-class-botao">Marcar Aula Experimental</button>
+        <p></p>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
     {% else %}
-        <p>Você não está logado.</p>
+        <p>Bem-vindo! Por favor, faça login ou registre-se para acessar mais funcionalidades.</p>
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
     {% endif %}
