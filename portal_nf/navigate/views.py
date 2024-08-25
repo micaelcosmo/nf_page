@@ -5,6 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
 import mercadopago
@@ -17,6 +18,7 @@ def class_schedules(request):
     class_schedules = Schedules.objects.all()
     return render(request, 'class_schedules.html', {'class_schedules': class_schedules})
 
+@login_required
 def manage_class_schedules(request):
     schedules = Schedules.objects.all()
     form = SchedulesForm()
@@ -51,6 +53,7 @@ def manage_class_schedules(request):
         'schedule_to_update': schedule_to_update
     })
 
+@login_required
 def experimental_class(request):
     _experimental_class = ExperimentalClass.objects.all()
     form = ExperimentalClassForm()
