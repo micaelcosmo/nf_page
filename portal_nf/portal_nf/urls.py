@@ -29,6 +29,7 @@ urlpatterns = [
     # SUPER USER
     path('admin/', admin.site.urls),
     path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
+    path('request_experimental_class/', views.request_experimental_class, name='request_experimental_class'),
 
     # LOGIN
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

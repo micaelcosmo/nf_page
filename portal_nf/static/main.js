@@ -1,4 +1,4 @@
-const experimentalClassButton = document.getElementById('experimental-class-botao');
+const experimentalClassButton = document.getElementById('request-experimental-class-button');
 experimentalClassButton.addEventListener('click', () => {
-    window.location.href = '/experimental_class/';
+    window.location.href = '/request_experimental_class/';
 });
