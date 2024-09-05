@@ -26,10 +26,13 @@ urlpatterns = [
     path('horarios/', views.class_schedules, name='class_schedules'),
     path('experimental_class/', views.experimental_class, name='experimental_class'),
 
+    # REGISTERED USER
+    path('request_experimental_class/', views.request_experimental_class, name='request_experimental_class'),
+
     # SUPER USER
     path('admin/', admin.site.urls),
     path('class_schedules/management/', views.manage_class_schedules, name='manage_class_schedules'),
-    path('request_experimental_class/', views.request_experimental_class, name='request_experimental_class'),
+    path('experimental_classes_management/', views.experimental_classes_management, name='experimental_classes_management'),
 
     # LOGIN
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

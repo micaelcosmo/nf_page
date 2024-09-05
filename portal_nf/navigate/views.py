@@ -1,5 +1,7 @@
 from .models import Schedules, ExperimentalClass
-from .forms import SchedulesForm, ExperimentalClassForm
+from .forms import (
+    SchedulesForm, ExperimentalClassForm, ExperimentalClassesForm
+    )
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -38,7 +40,7 @@ def class_schedules(request):
 
 #TODO
 @login_required
-def experimental_classes(request):
+def experimental_classes_management(request):
     """
     Renderiza a página de turmas experimentais.
 
@@ -49,33 +51,33 @@ def experimental_classes(request):
         HttpResponse: A resposta HTTP com a página de turmas experimentais renderizada.
     """
     _experimental_classes = ExperimentalClass.objects.all()
-    form = ExperimentalClassForm()
+    form = ExperimentalClassesForm()
     _class_to_update = None
 
     if request.method == "POST":
         if 'create' in request.POST:
-            form = ExperimentalClassForm(request.POST)
+            form = ExperimentalClassesForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('experimental_classes')
+                return redirect('experimental_classes_management')
 
         elif 'update' in request.POST:
             _class_to_update = get_object_or_404(ExperimentalClass, pk=request.POST.get('schedule_id'))
-            form = ExperimentalClassForm(request.POST, instance=_class_to_update)
+            form = ExperimentalClassesForm(request.POST, instance=_class_to_update)
             if form.is_valid():
                 form.save()
-                return redirect('experimental_classes')
+                return redirect('experimental_classes_management')
 
         elif 'delete' in request.POST:
             schedule_to_delete = get_object_or_404(ExperimentalClass, pk=request.POST.get('schedule_id'))
             schedule_to_delete.delete()
-            return redirect('experimental_classes')
+            return redirect('experimental_classes_management')
 
     elif request.method == "GET" and 'edit' in request.GET:
         _class_to_update = get_object_or_404(ExperimentalClass, pk=request.GET.get('schedule_id'))
-        form = ExperimentalClassForm(instance=_class_to_update)
+        form = ExperimentalClassesForm(instance=_class_to_update)
 
-    return render(request, 'request_experimental_class.html', {
+    return render(request, 'experimental_class_management.html', {
         'experimental_classes': _experimental_classes,
         'form': form,
         'class_to_update': _class_to_update

@@ -30,4 +30,6 @@ class ExperimentalClass(models.Model):
     start_hour = models.CharField(max_length=100)
     end_hour = models.CharField(max_length=100)
     modality = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, default='Agendado')
+    observations = models.CharField(max_length=500, default='')
     
