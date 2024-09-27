@@ -9,44 +9,41 @@
     <title>Escola de Dança</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
-        {% if user.is_superuser %}
-            <p>Administrador - {{ user.username }}</p>
-            <!-- Funcionalidades administrativas -->
-        {% elif user.is_staff %}
-            <p>Olá, {{ user.username }}!</p>
-            <!-- Funcionalidades de staff -->
-            <a href="{% url 'manage_class_schedules' %}" class="btn">Editar Horários</a>
-        {% else %}
-            <p>Bem-vindo, {{ user.username }}!</p>
+    <div class='navbar'>
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <p>Administrador - {{ user.username }}</p>
+                <!-- Funcionalidades administrativas -->
+            {% elif user.is_staff %}
+                <p>Olá, {{ user.username }}!</p>
+                <!-- Funcionalidades de staff -->
+                <button class="button manage_class_schedules" id="manage-class-schedules-button">Editar Horários</button>
+            {% else %}
+                <p>Bem-vindo, {{ user.username }}!</p>
+                </p>
+            {% endif %}
+            <p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
             </p>
         {% endif %}
-        <p>
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        </p>
-    {% endif %}
+        <div class="menu">
+            <button class="button class_schedules" id="class-schedules-button">Ver Horários</button>
+            {% if user.is_authenticated %}
+                {% if user.is_superuser or user.is_staff %}
+                <button class="button experimental_class_management" id="experimental-classes-management-button">Visualizar Aulas Experimentais</button>
+                {% else %}
+                <button class="button request_experimental_class" id="request-experimental-class-button">Marcar Aula Experimental</button>
+                {% endif %}
+            {% else %}
+                <button class="button login" id="login-button">Login</button>
+                <button class="button register" id="register-button">Cadastrar</button>
+            {% endif %}
+        </div>
+    </div>
     <h1>Bem-vindo à NF Page!</h1>
-    <p></p>
-    <a href="{% url 'class_schedules' %}" class="btn">Ver Horários</a>
-    <p></p>
-    {% if user.is_authenticated %}
-        {% if user.is_superuser or user.is_staff %}
-        <p>Revise as aulas experimentais agendadas</p>
-        <button id="experimental-classes-management-button">Visualizar Aulas Experimentais</button>
-        <p></p>
-        {% else %}
-        <p>Confira nossos horários de aulas e marque uma aula experimental!</p>
-        <button id="request-experimental-class-button">Marcar Aula Experimental</button>
-        <p></p>
-        {% endif %}
-    {% else %}
-        <p>Bem-vindo! Por favor, faça login ou registre-se para acessar mais funcionalidades.</p>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
-    {% endif %}
 
     <script src="{% static 'main.js' %}"></script>
 

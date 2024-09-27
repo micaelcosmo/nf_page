@@ -23,7 +23,7 @@ from navigate import views
 urlpatterns = [
     # COMMON USER
     path('', views.index, name='index'),
-    path('horarios/', views.class_schedules, name='class_schedules'),
+    path('class_schedules/', views.class_schedules, name='class_schedules'),
     path('experimental_class/', views.experimental_class, name='experimental_class'),
 
     # REGISTERED USER
