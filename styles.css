@@ -5,14 +5,14 @@
     box-sizing: border-box;
 }
 
-/* PALETA DE CORES ATUALIZADA: Azul Turquesa e Branco */
+/* PALETA DE CORES ATUALIZADA: Azul Escuro e Branco */
 :root {
     --bg-light: #FFFFFF;         /* Branco puro */
-    --bg-accent: #E0FFFF;        /* Azul turquesa muito claro (Light Cyan) */
+    --bg-accent: #F0F2F5;        /* Cinza bem claro para seções de destaque */
     --text-dark: #212529;        /* Carvão (Mantido para boa legibilidade) */
     --text-light: #6c757d;       /* Cinza para textos secundários */
-    --primary-color: #40E0D0;     /* Azul Turquesa (Turquoise) */
-    --secondary-color: #20B2AA;  /* Azul Turquesa Escuro (Light Sea Green) */
+    --primary-color: #243c62;     /* Azul escuro principal */
+    --secondary-color: #1b2d49;  /* Azul mais escuro para hover */
 }
 
 /* ------------------------------------------- */
@@ -63,12 +63,12 @@ body {
 #inicio, #final { background-color: var(--bg-accent); }
 #nossa-filosofia, #motivos { background-color: var(--bg-light); }
 
-/* Garante que o conteúdo não vaze da seção */
-#aulas, #eventos { 
+/* Garante que o conteúdo de seções altas não vaze */
+#aulas, #eventos, #professores, #planos { 
     background-color: #fff; 
-    justify-content: flex-start; /* Alinha o conteúdo ao topo da seção */
-    overflow-y: auto;          /* Permite rolagem interna se o conteúdo for maior que a tela */
-    padding-top: max(5vh, 30px); /* Adiciona um espaçamento no topo para o título não colar na borda */
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-top: max(5vh, 30px);
 }
 
 /* ------------------------------------------- */
@@ -84,7 +84,7 @@ body {
 h2 {
     font-family: 'Painter', cursive;
     font-size: 2.8rem;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin-bottom: 20px;
 }
 
@@ -106,10 +106,10 @@ h2 {
 /* ------------------------------------------- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas lado a lado */
-    gap: 25px; /* Espaçamento entre os quadrados */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
     width: 100%;
-    max-width: 900px; /* Largura máxima da grade */
+    max-width: 900px;
     padding: 0 20px;
 }
 
@@ -122,7 +122,7 @@ h2 {
 .gallery-grid figure img,
 .video-galeria { 
     width: 100%;
-    aspect-ratio: 1 / 1; /* Proporção de 1:1, criando um quadrado perfeito */
+    aspect-ratio: 1 / 1;
     object-fit: cover; 
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -138,15 +138,180 @@ figcaption {
 }
 
 /* ------------------------------------------- */
-/* IMAGEM DE FINALIZAÇÃO (AJUSTADO) */
+/* IMAGEM DE FINALIZAÇÃO */
 /* ------------------------------------------- */
 #final_img {
     padding: 0;
-    background-color: #ECE8D8; /* Cor de fundo desejada */
-    background-image: url('../img/apresentacao_final.png'); /* Caminho da sua imagem */
-    background-size: cover;    /* Faz a imagem cobrir toda a área */
-    background-position: center center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Garante que a imagem não se repita */
+    background-color: #ECE8D8; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#final_img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+
+/* ------------------------------------------- */
+/* SEÇÃO DE PROFESSORES */
+/* ------------------------------------------- */
+.teacher-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; 
+    flex-wrap: wrap; 
+    gap: 40px; 
+    width: 100%;
+    max-width: 1300px;
+    margin-top: 20px;
+}
+
+.teacher-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-card img {
+    width: 45%; 
+    object-fit: cover; 
+}
+
+.teacher-info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1; 
+}
+
+.teacher-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.teacher-title {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.teacher-bio {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+/* ------------------------------------------- */
+/* SEÇÃO DE PLANOS E VALORES (NOVO)            */
+/* ------------------------------------------- */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+.pricing-column {
+    background: var(--bg-accent);
+    padding: 25px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-column h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.plan-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.plan-item:last-child {
+    border-bottom: none;
+}
+
+.plan-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.plan-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap;
+    padding-left: 10px;
+}
+
+.plan-price small, .plan-name small {
+    font-weight: 400;
+    color: var(--text-light);
+    display: block;
+    font-size: 0.8rem;
+}
+
+.plan-item-family {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.family-options {
+    margin-top: 10px;
+}
+
+.family-options span {
+    display: block;
+    margin: 5px 0;
+    color: var(--text-dark);
+}
+
+.contact-info {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.contact-info p {
+    margin: 5px 0;
 }
 
 /* ------------------------------------------- */
@@ -176,7 +341,7 @@ figcaption {
     font-weight: bold;
     font-size: 1.2rem;
     background-color: var(--primary-color);
-    color: var(--text-dark); /* Cor do texto do botão ajustada para melhor contraste */
+    color: var(--bg-light);
     padding: 15px 30px;
     border-radius: 50px;
     text-decoration: none;
@@ -223,13 +388,30 @@ figcaption {
     .final-title { font-size: 2.5rem; }
     .reasons-list { font-size: 1rem; }
 
-    /* Faz a grade ter apenas 1 coluna no celular */
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 20px;
-        max-width: 350px; /* Limita a largura no celular */
+        max-width: 350px;
     }
 
+    .teacher-container {
+        gap: 20px;
+    }
+
+    .teacher-card {
+        flex-direction: column;
+        max-width: 350px;
+    }
+
+    .teacher-card img {
+        width: 100%;
+        height: 300px;
+    }
+
+    .teacher-info {
+        text-align: center;
+    }
+    
     .signature {
         padding: 12px 25px;
         font-size: 1.1rem;
