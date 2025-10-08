@@ -5,14 +5,14 @@
     box-sizing: border-box;
 }
 
-/* Variáveis de cor para fácil manutenção */
+/* PALETA DE CORES ATUALIZADA: Azul Turquesa e Branco */
 :root {
-    --bg-light: #f8f9fa;      /* Um branco-gelo muito claro */
-    --bg-accent: #eef7f6;     /* Um tom de azul-petróleo muito claro */
-    --text-dark: #212529;     /* Cor de carvão, quase preto */
-    --text-light: #495057;    /* Cinza escuro para textos secundários */
-    --primary-color: #1abc9c; /* Azul-petróleo (Teal) vibrante como cor principal */
-    --secondary-color: #138d75;/* Tom mais escuro do azul-petróleo para títulos */
+    --bg-light: #FFFFFF;         /* Branco puro */
+    --bg-accent: #E0FFFF;        /* Azul turquesa muito claro (Light Cyan) */
+    --text-dark: #212529;        /* Carvão (Mantido para boa legibilidade) */
+    --text-light: #6c757d;       /* Cinza para textos secundários */
+    --primary-color: #40E0D0;     /* Azul Turquesa (Turquoise) */
+    --secondary-color: #20B2AA;  /* Azul Turquesa Escuro (Light Sea Green) */
 }
 
 /* ------------------------------------------- */
@@ -62,10 +62,6 @@ body {
 /* Cores de fundo das seções */
 #inicio, #final { background-color: var(--bg-accent); }
 #nossa-filosofia, #motivos { background-color: var(--bg-light); }
-#final_img { 
-    background-color: var(--text-dark);
-    padding: 0;
-}
 
 /* Garante que o conteúdo não vaze da seção */
 #aulas, #eventos { 
@@ -79,14 +75,14 @@ body {
 /* TIPOGRAFIA E ELEMENTOS */
 /* ------------------------------------------- */
 .title {
-    font-family: 'Painter', cursive; /* <<-- FONTE ATUALIZADA */
+    font-family: 'Painter', cursive;
     font-size: 4rem;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
 
 h2 {
-    font-family: 'Painter', cursive; /* <<-- FONTE ATUALIZADA */
+    font-family: 'Painter', cursive;
     font-size: 2.8rem;
     color: var(--secondary-color);
     margin-bottom: 20px;
@@ -142,13 +138,15 @@ figcaption {
 }
 
 /* ------------------------------------------- */
-/* IMAGEM DE FINALIZAÇÃO */
+/* IMAGEM DE FINALIZAÇÃO (AJUSTADO) */
 /* ------------------------------------------- */
-#final_img img {
-    max-width: 100%; 
-    max-height: 100%;
-    object-fit: contain; 
-    background-color: var(--text-dark);
+#final_img {
+    padding: 0;
+    background-color: #ECE8D8; /* Cor de fundo desejada */
+    background-image: url('../img/apresentacao_final.png'); /* Caminho da sua imagem */
+    background-size: cover;    /* Faz a imagem cobrir toda a área */
+    background-position: center center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Garante que a imagem não se repita */
 }
 
 /* ------------------------------------------- */
@@ -178,7 +176,7 @@ figcaption {
     font-weight: bold;
     font-size: 1.2rem;
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--text-dark); /* Cor do texto do botão ajustada para melhor contraste */
     padding: 15px 30px;
     border-radius: 50px;
     text-decoration: none;
