@@ -60,8 +60,12 @@ body {
 }
 
 /* Cores de fundo das seções */
-#inicio, #final { background-color: var(--bg-accent); }
-#nossa-filosofia, #motivos { background-color: var(--bg-light); }
+#final { background-color: var(--bg-accent); }
+#nossa-filosofia, #motivos { 
+    background-color: var(--bg-light);
+    border-radius: 0; 
+    box-shadow: none;  
+}
 
 /* Garante que o conteúdo de seções altas não vaze */
 #aulas, #eventos, #professores, #planos { 
@@ -70,6 +74,7 @@ body {
     overflow-y: auto;
     padding-top: max(5vh, 30px);
 }
+
 
 /* ------------------------------------------- */
 /* TIPOGRAFIA E ELEMENTOS */
@@ -138,24 +143,67 @@ figcaption {
 }
 
 /* ------------------------------------------- */
-/* IMAGEM DE FINALIZAÇÃO */
+/* SEÇÃO #FINAL_IMG (IMAGEM VISÍVEL + TEXTO ABAIXO) */
 /* ------------------------------------------- */
 #final_img {
-    padding: 0;
+    /* Cor de fundo solicitada */
     background-color: #ECE8D8; 
-    overflow: hidden;
+    
+    /* Limpa estilos de background-image e overlay (se existirem) */
+    background-image: none;
+    padding: 20px; /* Adiciona padding de volta para espaçamento interno */
+    
+    /* Garante que nada saia da seção, crucial para scroll-snap */
+    overflow: hidden; 
+    
+    /* Configura o alinhamento (Imagem e Texto um abaixo do outro) */
+    position: relative; 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#final_img img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+/* Remove o overlay escuro (já que a imagem não é mais de fundo) */
+#final_img::before {
+    content: none; 
+}
+
+/* Estilo para a imagem visível */
+.final-image {
+    display: block; /* Garante que a imagem apareça */
+    max-width: 90%; 
+    /* Ajustado para ser um pouco menor para dar espaço ao texto */
+    max-height: 60vh; 
     width: auto;
     height: auto;
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+    
+    /* REMOVIDO: Borda e Sombra para unificar com o background */
+    border-radius: 0; 
+    box-shadow: none; 
 }
+
+/* Contêiner de Texto (espaçamento e largura) */
+.final-text-container {
+    /* Ajuste para subir o texto */
+    margin-top: 0px; 
+    max-width: 900px;
+    padding: 0 20px;
+    z-index: auto; 
+    position: relative;
+}
+
+/* Garante que o título use a cor primária padrão neste fundo claro */
+#final_img .title {
+    color: var(--primary-color); 
+    text-shadow: none; 
+}
+#final_img .subtitle {
+    color: var(--text-light);
+    text-shadow: none;
+}
+
 
 /* ------------------------------------------- */
 /* SEÇÃO DE PROFESSORES */
@@ -190,7 +238,7 @@ figcaption {
 
 .teacher-card img {
     width: 45%; 
-    object-fit: cover; 
+    object-fit: contain; /* ALTERADO: Garante que a imagem não seja cortada (regra principal) */
 }
 
 .teacher-info {
@@ -383,10 +431,41 @@ figcaption {
 /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
 /* ------------------------------------------- */
 @media (max-width: 768px) {
+    
+    /* CORREÇÃO da seção professores */
+    #professores {
+        justify-content: flex-start;
+        overflow-y: auto; 
+        padding-top: 30px;
+    }
+    .teacher-container {
+        max-width: 90vw; 
+    }
+    .teacher-card {
+        flex-direction: column;
+        max-width: 100%; 
+    }
+    .teacher-card img {
+        width: 100%;
+        height: 300px; 
+        object-fit: contain; /* ALTERADO: Garante que a imagem não seja cortada (regra mobile) */
+    }
+    /* FIM da CORREÇÃO da seção professores */
+    
     .title { font-size: 2.8rem; }
     h2 { font-size: 2.2rem; }
     .final-title { font-size: 2.5rem; }
     .reasons-list { font-size: 1rem; }
+    
+    /* Ajuste de tamanho da imagem em mobile */
+    .final-image {
+        max-height: 50vh; 
+    }
+    
+    .final-text-container {
+        /* Ajuste para mobile, garantindo que o texto não fique longe demais da imagem */
+        margin-top: 15px; 
+    }
 
     .gallery-grid {
         grid-template-columns: 1fr;
@@ -397,17 +476,7 @@ figcaption {
     .teacher-container {
         gap: 20px;
     }
-
-    .teacher-card {
-        flex-direction: column;
-        max-width: 350px;
-    }
-
-    .teacher-card img {
-        width: 100%;
-        height: 300px;
-    }
-
+    
     .teacher-info {
         text-align: center;
     }
