@@ -187,7 +187,7 @@ figcaption {
 /* Contêiner de Texto (espaçamento e largura) */
 .final-text-container {
     /* Ajuste para subir o texto */
-    margin-top: 0px; 
+    margin-top: -3%; 
     max-width: 900px;
     padding: 0 20px;
     z-index: auto; 
@@ -464,7 +464,7 @@ figcaption {
     
     .final-text-container {
         /* Ajuste para mobile, garantindo que o texto não fique longe demais da imagem */
-        margin-top: 15px; 
+        margin-top: -3%; 
     }
 
     .gallery-grid {
