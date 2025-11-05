@@ -63,13 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappButton = document.getElementById('assinatura-final');
 
     if (whatsappButton) {
-        const phoneNumber = '5561982907143';
-        const message = 'Olá, gostaria de agendar uma aula experimental.';
         
-        // Codifica a mensagem para ser usada em uma URL de forma segura
-        const encodedMessage = encodeURIComponent(message);
-        
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        const whatsappUrl = `https://chat.whatsapp.com/GpJ6szqrDaL1bCjsp6DK3N?mode=wwt`;
 
         // Opcional, mas recomendado: define o href para que o usuário veja o link
         whatsappButton.href = whatsappUrl;

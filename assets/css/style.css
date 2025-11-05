@@ -1,0 +1,604 @@
+/* RESET GLOBAL: Remove Margens e Paddings Padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* PALETA DE CORES ATUALIZADA: Azul Escuro e Branco */
+:root {
+    --bg-light: #FFFFFF;        /* Branco puro */
+    --bg-accent: #F0F2F5;       /* Cinza bem claro para seções de destaque */
+    --text-dark: #212529;       /* Carvão (Mantido para boa legibilidade) */
+    --text-light: #6c757d;      /* Cinza para textos secundários */
+    --primary-color: #243c62;    /* Azul escuro principal */
+    --secondary-color: #1b2d49;  /* Azul mais escuro para hover */
+}
+
+/* ------------------------------------------- */
+/* DECLARAÇÃO DE FONTES PERSONALIZADAS         */
+/* ------------------------------------------- */
+@font-face {
+  font-family: 'Painter'; /* Nome que você usará no seu site */
+  src: url('fonts/Painter.woff2') format('woff2'),
+       url('fonts/Painter.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Melhora o carregamento */
+}
+
+body {
+    margin: 0; 
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    overflow-x: hidden; 
+}
+
+/* ------------------------------------------- */
+/* ESTRUTURA E SCROLL-SNAP */
+/* ------------------------------------------- */
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; 
+    scroll-behavior: smooth;
+}
+
+.section {
+    scroll-snap-align: start; 
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Cores de fundo das seções */
+/* #final { background-color: var(--bg-accent); }  <-- REMOVIDO DAQUI */
+#nossa-filosofia, #motivos { 
+    background-color: var(--bg-light);
+    border-radius: 0; 
+    box-shadow: none;  
+}
+
+/* Garante que o conteúdo de seções altas não vaze */
+#aulas, #eventos, #professores, #planos { 
+    background-color: #fff; 
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-top: max(5vh, 30px);
+}
+
+
+/* ------------------------------------------- */
+/* TIPOGRAFIA E ELEMENTOS */
+/* ------------------------------------------- */
+.title {
+    font-family: 'Painter', cursive;
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: 'Painter', cursive;
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.content-box {
+    max-width: 90%;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ------------------------------------------- */
+/* HERO (HOME) - AVATAR E CTA INTERATIVO (NOVO) */
+/* ------------------------------------------- */
+
+/* 1. O Contêiner que agrupa o botão e o avatar */
+.cta-principal-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Coloca um item em cima do outro */
+    align-items: center; /* Centraliza horizontalmente */
+    margin-top: 2rem; /* Espaçamento */
+}
+
+/* 2. O Botão de CTA do Hero */
+.btn-cta-hero {
+    /* Estilos base (inspirados no .signature) */
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--bg-light);
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    
+    /* Para a interatividade */
+    position: relative; 
+    z-index: 20; /* Fica na FRENTE do avatar */
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+}
+
+/* 3. O Avatar (a imagem da Nanda) */
+.avatar-cta-guia {
+    width: 170px; /* Tamanho do avatar (ajuste se necessário) */
+    height: auto;
+    margin-top: -15px; /* Sobrepõe levemente o botão */
+    z-index: 10; /* Fica ATRÁS do botão */
+    pointer-events: none; /* O mouse "ignora" o avatar */
+    transition: transform 0.3s ease-out; 
+}
+
+/* 4. A MÁGICA DA INTERATIVIDADE */
+
+/* Quando o usuário passar o mouse SOBRE o botão... */
+.btn-cta-hero:hover {
+    /* ...o botão "sobe" e muda de cor */
+    transform: scale(1.05) translateY(-5px);
+    background-color: var(--secondary-color);
+}
+
+/* Quando o usuário passar o mouse sobre o botão,
+   o avatar (que é o "irmão" adjacente '+') reage.
+*/
+.btn-cta-hero:hover + .avatar-cta-guia {
+    /* ...o avatar "cresce" em resposta */
+    transform: scale(1.1);
+}
+
+
+/* ------------------------------------------- */
+/* GALERIA E MÍDIA */
+/* ------------------------------------------- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.gallery-grid figure {
+    margin: 0; 
+    padding: 0;
+    width: 100%;
+}
+
+.gallery-grid figure img,
+.video-galeria { 
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover; 
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff; 
+    display: block; 
+}
+
+figcaption {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+/* ------------------------------------------- */
+/* SEÇÃO #FINAL_IMG (IMAGEM VISÍVEL + TEXTO ABAIXO) */
+/* ------------------------------------------- */
+#final_img {
+    /* Cor de fundo solicitada */
+    background-color: #ECE8D8; 
+    
+    /* Limpa estilos de background-image e overlay (se existirem) */
+    background-image: none;
+    padding: 20px; /* Adiciona padding de volta para espaçamento interno */
+    
+    /* Garante que nada saia da seção, crucial para scroll-snap */
+    overflow: hidden; 
+    
+    /* Configura o alinhamento (Imagem e Texto um abaixo do outro) */
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Remove o overlay escuro (já que a imagem não é mais de fundo) */
+#final_img::before {
+    content: none; 
+}
+
+/* Estilo para a imagem visível */
+.final-image {
+    display: block; /* Garante que a imagem apareça */
+    max-width: 90%; 
+    /* Ajustado para ser um pouco menor para dar espaço ao texto */
+    max-height: 60vh; 
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+    
+    /* REMOVIDO: Borda e Sombra para unificar com o background */
+    border-radius: 0; 
+    box-shadow: none; 
+}
+
+/* Contêiner de Texto (espaçamento e largura) */
+.final-text-container {
+    /* Ajuste para subir o texto */
+    margin-top: -3%; 
+    max-width: 900px;
+    padding: 0 20px;
+    z-index: auto; 
+    position: relative;
+}
+
+/* Garante que o título use a cor primária padrão neste fundo claro */
+#final_img .title {
+    color: var(--primary-color); 
+    text-shadow: none; 
+}
+#final_img .subtitle {
+    color: var(--text-light);
+    text-shadow: none;
+}
+
+
+/* ------------------------------------------- */
+/* SEÇÃO DE PROFESSORES */
+/* ------------------------------------------- */
+.teacher-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; 
+    flex-wrap: wrap; 
+    gap: 40px; 
+    width: 100%;
+    max-width: 1300px;
+    margin-top: 20px;
+}
+
+.teacher-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.teacher-card img {
+    width: 45%; 
+    object-fit: contain; /* ALTERADO: Garante que a imagem não seja cortada (regra principal) */
+}
+
+.teacher-info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1; 
+}
+
+.teacher-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.teacher-title {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.teacher-bio {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+/* ------------------------------------------- */
+/* SEÇÃO DE PLANOS E VALORES (NOVO)            */
+/* ------------------------------------------- */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+.pricing-column {
+    background: var(--bg-accent);
+    padding: 25px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-column h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.plan-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.plan-item:last-child {
+    border-bottom: none;
+}
+
+.plan-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.plan-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap;
+    padding-left: 10px;
+}
+
+.plan-price small, .plan-name small {
+    font-weight: 400;
+    color: var(--text-light);
+    display: block;
+    font-size: 0.8rem;
+}
+
+.plan-item-family {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.family-options {
+    margin-top: 10px;
+}
+
+.family-options span {
+    display: block;
+    margin: 5px 0;
+    color: var(--text-dark);
+}
+
+.contact-info {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* ------------------------------------------- */
+/* LISTA DE MOTIVOS E FINALIZAÇÃO */
+/* ------------------------------------------- */
+
+/* 👇 INÍCIO DA MODIFICAÇÃO DE FUNDO DA SEÇÃO FINAL 👇 
+*/
+
+/* 1. Define o fundo azul do avatar para a seção */
+#final { 
+    background-color: #294c7a; /* A cor de fundo do avatar */
+    color: var(--bg-light);    /* Define a cor padrão (parágrafo e coração) como branca */
+}
+
+/* 2. Ajusta títulos e subtítulos para branco */
+#final .final-title,
+#final .subtitle {
+    color: var(--bg-light); /* Título e subtítulo brancos */
+}
+
+/* 3. Inverte as cores do botão para se destacar */
+#final .signature {
+    background-color: var(--bg-light); /* Fundo do botão branco */
+    color: var(--primary-color);       /* Texto do botão em azul escuro */
+}
+
+/* 4. Ajusta o hover do botão */
+#final .signature:hover {
+    background-color: var(--bg-accent); /* Fundo cinza claro no hover */
+    color: var(--secondary-color);    /* Texto azul mais escuro no hover */
+    transform: translateY(-3px); /* Mantém o efeito */
+}
+
+/* 5. Ajusta a cor do coração */
+#final .heart {
+    color: var(--bg-light);
+}
+
+/* 👆 FIM DA MODIFICAÇÃO DE FUNDO 👆 
+*/
+
+
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+    text-align: left;
+    max-width: 90%;
+}
+
+.reasons-list li {
+    margin: 12px 0;
+    color: var(--text-dark);
+}
+
+.final-title {
+    font-size: 3.5rem;
+}
+
+/* Estilo base do botão .signature (para outras seções) */
+.signature {
+    margin-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--bg-light);
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.signature:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.heart {
+    font-size: 3rem;
+    margin-top: 30px;
+    color: var(--primary-color);
+}
+
+.pulse { animation: pulse-animation 1.5s infinite; }
+@keyframes pulse-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ------------------------------------------- */
+/* EFEITOS DE REVELAÇÃO (FADE-IN) */
+/* ------------------------------------------- */
+.fade-element {
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------------------- */
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+/* ------------------------------------------- */
+@media (max-width: 768px) {
+    
+    /* CORREÇÃO da seção professores */
+    #professores {
+        justify-content: flex-start;
+        overflow-y: auto; 
+        padding-top: 30px;
+    }
+    .teacher-container {
+        max-width: 90vw; 
+    }
+    .teacher-card {
+        flex-direction: column;
+        max-width: 100%; 
+    }
+    .teacher-card img {
+        width: 100%;
+        height: 300px; 
+        object-fit: contain; /* ALTERADO: Garante que a imagem não seja cortada (regra mobile) */
+    }
+    /* FIM da CORREÇÃO da seção professores */
+    
+    .title { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    .final-title { font-size: 2.5rem; }
+    .reasons-list { font-size: 1rem; }
+    
+    /* Ajuste de tamanho da imagem em mobile */
+    .final-image {
+        max-height: 50vh; 
+    }
+    
+    .final-text-container {
+        /* Ajuste para mobile, garantindo que o texto não fique longe demais da imagem */
+        margin-top: -3%; 
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 350px;
+    }
+
+    .teacher-container {
+        gap: 20px;
+    }
+    
+    .teacher-info {
+        text-align: center;
+    }
+    
+    .signature {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+
+    /* ------------------------------------------- */
+    /* AJUSTES MOBILE DO HERO CTA (NOVO)        */
+    /* ------------------------------------------- */
+    
+    /* Ajuste do Avatar no Hero */
+    .avatar-cta-guia {
+        width: 140px; /* Um pouco menor no mobile */
+        margin-top: -10px;
+    }
+    
+    /* Botão um pouco menor */
+    .btn-cta-hero {
+        font-size: 1.1rem; 
+        padding: 12px 25px;
+    }
+}
