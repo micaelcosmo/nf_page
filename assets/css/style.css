@@ -531,3 +531,203 @@ h2 {
         padding: 12px 25px;
     }
 }
+/* Botão do Instagram nos Cards */
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre ícone e texto */
+    margin-top: 15px;
+    color: var(--primary-color); /* Usa a cor azul do seu tema */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.instagram-link svg {
+    transition: transform 0.3s ease;
+}
+
+.instagram-link:hover {
+    color: #E1306C; /* Cor oficial do Instagram (Rosa/Roxo) */
+    transform: translateX(3px); /* Leve movimento para a direita */
+}
+
+.instagram-link:hover svg {
+    stroke: #E1306C; /* Muda a cor da linha do ícone */
+}
+
+/* SEÇÃO INSTAGRAM */
+#instagram-feed {
+    background-color: var(--bg-accent);
+    padding-bottom: 50px;
+    /* Ajuste de altura para acomodar o carrossel sem quebrar o snap da página */
+    justify-content: center; 
+}
+
+.insta-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.title-insta {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Container do Carrossel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; /* Largura máxima do carrossel */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+/* O "Trilho" onde as imagens ficam */
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permite rolagem horizontal */
+    scroll-snap-type: x mandatory; /* Efeito magnético */
+    padding: 20px 5px; /* Padding para a sombra não cortar */
+    scroll-behavior: smooth;
+    
+    /* Esconde a barra de rolagem (Estética) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Cards Individuais */
+.carousel-card {
+    flex: 0 0 auto; /* Não deixa o card encolher */
+    width: 280px;   /* Largura fixa do card */
+    height: 280px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: center; /* O card para sempre no meio */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Garante que tanto imagem quanto vídeo preencham o card perfeitamente */
+.carousel-card img,
+.carousel-card video {
+    width: 100%;
+    height: 100%;
+    /* 'object-fit: cover' é o segredo para não distorcer o vídeo no quadrado */
+    object-fit: cover; 
+    display: block;
+}
+
+/* Opcional: muda ligeiramente a cor do overlay em vídeos */
+.video-card .insta-overlay {
+    background: rgba(36, 60, 98, 0.6); /* Um pouco mais transparente para ver o vídeo */
+}
+
+/* Efeito Hover Overlay */
+.insta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(36, 60, 98, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.insta-overlay span {
+    color: #fff;
+    font-weight: bold;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .insta-overlay { opacity: 1; }
+.carousel-card:hover .insta-overlay span { transform: translateY(0); }
+.carousel-card:hover { transform: translateY(-5px); }
+
+/* Botões de Navegação (Setas) */
+.carousel-btn {
+    background-color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 10;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.2s;
+    
+    /* Posicionamento absoluto para ficar "flutuando" */
+    position: absolute;
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.carousel-btn:active { transform: scale(0.9); }
+
+.btn-prev { left: -20px; }
+.btn-next { right: -20px; }
+
+/* Botão final "Ver Perfil" */
+.btn-insta-follow {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.btn-insta-follow:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .carousel-card {
+        width: 240px;
+        height: 240px;
+    }
+    
+    /* No celular, escondemos as setas pois o usuário usa o dedo */
+    .carousel-btn {
+        display: none;
+    }
+    
+    .carousel-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+}

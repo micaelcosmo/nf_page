@@ -77,4 +77,78 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(whatsappUrl, '_blank');
         });
     }
+
+    // -------------------------------------------
+    // 4. LÓGICA DO CARROSSEL INSTAGRAM
+    // -------------------------------------------
+    const track = document.querySelector('.carousel-track');
+    const btnPrev = document.querySelector('.btn-prev');
+    const btnNext = document.querySelector('.btn-next');
+
+    if (track && btnPrev && btnNext) {
+        // Quantos pixels rolar ao clicar (Largura do card + gap)
+        const scrollAmount = 300; 
+
+        btnNext.addEventListener('click', () => {
+            track.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        btnPrev.addEventListener('click', () => {
+            track.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // -------------------------------------------
+    // 5. LÓGICA DE VÍDEO HOVER (Toca 10s ao passar o mouse)
+    // -------------------------------------------
+    const videoCards = document.querySelectorAll('.video-card');
+
+    if (videoCards.length > 0) {
+        videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            let playTimeout; // Variável para guardar o temporizador de 10s
+
+            // Função auxiliar para parar e resetar o vídeo
+            const stopAndResetVideo = () => {
+                clearTimeout(playTimeout); // Cancela o temporizador de 10s se ele ainda existir
+                video.pause();
+                video.currentTime = 0; // Reseta para o início
+            };
+
+            // Mouse entra: Toca o vídeo
+            card.addEventListener('mouseenter', () => {
+                // Garante que está mudo
+                video.muted = true; 
+                
+                // O método .play() retorna uma Promessa. Precisamos lidar com ela
+                // para evitar erros no console se o mouse sair antes do vídeo carregar.
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // O vídeo começou a tocar com sucesso.
+                        // Iniciamos a contagem regressiva de 10 segundos.
+                        playTimeout = setTimeout(() => {
+                            stopAndResetVideo();
+                        }, 10000); // 10000 milissegundos = 10 segundos
+                    })
+                    .catch(error => {
+                        // O navegador impediu o autoplay (raro se estiver mutado, mas possível)
+                        console.log("Hover play impedido pelo navegador");
+                    });
+                }
+            });
+
+            // Mouse sai: Para e reseta
+            card.addEventListener('mouseleave', () => {
+                stopAndResetVideo();
+            });
+        });
+    }
 });
