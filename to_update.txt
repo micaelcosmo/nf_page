@@ -1,0 +1,32 @@
+Backlog de Melhorias - N.F Espaço de Dança -> https://micaelcosmo.github.io/nf_page/
+
+[ ] 1. Implementar Scroll Suave (Smooth Scrolling): Adicionar rolagem fluida ao clicar nos links do menu superior. Isso ajuda o usuário a manter o contexto espacial na página de rolagem única (Single Page Application).
+
+[ ] 2. Configurar Link Real no Botão CTA: Alterar o botão "Agende uma Aula Experimental" (que hoje está vazio) para abrir diretamente no WhatsApp da escola (61 98290-7143) com uma mensagem padrão pré-preenchida, reduzindo o atrito para novos alunos.
+
+[ ] 3. Adicionar Efeitos de Interação (Hover) nos Cards: Incluir uma leve transição de movimento (elevação) e sombra ao passar o mouse nas fotos dos professores e nas caixas de planos. Fornece feedback visual imediato de que a página é interativa.
+
+*[ ] 4. Configurar Lazy Loading em Mídias: Adicionar o atributo nativo loading="lazy" nas imagens pesadas e nos vídeos/iframes do Instagram. Isso adia o carregamento até o momento da rolagem, melhorando drasticamente a velocidade de abertura do site no mobile.
+
+[ ] 5. Melhorar Acessibilidade (A11y) e Semântica HTML: Revisar a estrutura para incluir atributos ARIA (como aria-label nos links do Instagram) e trocar <div> genéricas por tags semânticas (<section>, <article>). Isso torna o site mais inclusivo e melhora o ranqueamento no Google (SEO).
+
+
+
+
+"""
+Tenho que fazer a task
+
+Configurar Lazy Loading em Mídias: Adicionar o atributo nativo loading="lazy" nas imagens pesadas e nos vídeos/iframes do Instagram. Isso adia o carregamento até o momento da rolagem, melhorando drasticamente a velocidade de abertura do site no mobile.
+
+
+
+sobre o site 
+
+https://micaelcosmo.github.io/nf_page/
+
+
+
+Me explica?
+
+Não me dê o código, mas me faça entender o que é pra fazer.
+"""
